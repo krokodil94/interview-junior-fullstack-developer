@@ -1,0 +1,28 @@
+<div class="search-container">
+  <div class="search-form">
+    <app-search-form (searchSubmit)="searchCities($event)"></app-search-form>
+  </div>
+
+  
+  <app-search-results
+    *ngIf="hasSearched"
+    [searchResults]="searchResults"
+    [currentPage]="currentPage"
+    [totalPages]="totalPages"
+    (nextPage)="loadNextPage()"
+    (previousPage)="loadPreviousPage()"
+  ></app-search-results>
+</div>
+
+
+  
+
+  
+
+
+
+
+
+
+
+  

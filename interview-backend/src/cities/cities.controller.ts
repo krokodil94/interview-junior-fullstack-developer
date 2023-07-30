@@ -1,4 +1,3 @@
-// src/cities/cities.controller.ts
 
 import { Controller, Get, Query, DefaultValuePipe, ParseIntPipe } from '@nestjs/common';
 import { CitiesService } from './cities.service';
