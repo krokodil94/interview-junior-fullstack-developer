@@ -13,21 +13,32 @@ export class CitySearchComponent {
   totalPages = 1;
   hasSearched = false;
   noResultsFound = false;
-  currentQuery = ''; 
+  currentQuery = ''; // Variable to store the current search query
+  emptyQuery = false; // Variable to track if the current query is empty
 
   constructor(private http: HttpClient) {}
 
   searchCities(query: string) {
     const trimmedQuery = query.trim();
     console.log('Searching for:', trimmedQuery);
+
     if (!trimmedQuery) {
       this.searchResults = [];
-      this.hasSearched = true; 
-      this.noResultsFound = false; 
+      this.hasSearched = true; // Mark as searched
+      this.noResultsFound = false; // Reset no results found
+      this.currentQuery = ''; // Clear the current search query
+      this.emptyQuery = true; // Mark as empty query
       return;
     }
 
-    this.currentQuery = trimmedQuery; 
+    // Perform input validation to avoid unnecessary requests for invalid queries
+    if (trimmedQuery === this.currentQuery) {
+      // If the query is the same as the previous one, do not make a new request
+      return;
+    }
+
+    this.currentQuery = trimmedQuery; // Save the current search query
+    this.emptyQuery = false; // Reset empty query flag
     this.loadPage(trimmedQuery, 1);
     this.hasSearched = true;
   }
@@ -43,11 +54,10 @@ export class CitySearchComponent {
           this.searchResults = response.results;
           this.currentPage = page;
           this.totalPages = response.totalPages;
-          this.noResultsFound = this.searchResults.length === 0; 
         },
         (error) => {
           console.error('Error fetching search results:', error);
-          this.noResultsFound = true; 
+          this.noResultsFound = true; // Mark as no results found
         }
       );
   }
@@ -66,5 +76,6 @@ export class CitySearchComponent {
     }
   }
 }
+
 
 

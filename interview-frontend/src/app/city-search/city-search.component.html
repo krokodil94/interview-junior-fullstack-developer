@@ -1,11 +1,14 @@
 <div class="search-container">
   <div class="search-form">
     <app-search-form (searchSubmit)="searchCities($event)"></app-search-form>
+    <ng-container *ngIf="emptyQuery">
+      <p>Please enter a city name to search.</p>
+    </ng-container>
   </div>
 
-  
+  <!-- Use ngIf to conditionally show/hide app-search-results -->
   <app-search-results
-    *ngIf="hasSearched"
+    *ngIf="hasSearched && !emptyQuery"
     [searchResults]="searchResults"
     [currentPage]="currentPage"
     [totalPages]="totalPages"
@@ -13,6 +16,7 @@
     (previousPage)="loadPreviousPage()"
   ></app-search-results>
 </div>
+
 
 
   
