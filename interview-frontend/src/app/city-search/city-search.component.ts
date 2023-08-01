@@ -65,14 +65,14 @@ export class CitySearchComponent {
   loadNextPage() {
     const nextPage = this.currentPage + 1;
     if (nextPage <= this.totalPages) {
-      this.loadPage(this.currentQuery, nextPage); // Use the stored search query
+      this.loadPage(this.currentQuery, nextPage); 
     }
   }
 
   loadPreviousPage() {
     const previousPage = this.currentPage - 1;
     if (previousPage >= 1) {
-      this.loadPage(this.currentQuery, previousPage); // Use the stored search query
+      this.loadPage(this.currentQuery, previousPage); 
     }
   }
 }

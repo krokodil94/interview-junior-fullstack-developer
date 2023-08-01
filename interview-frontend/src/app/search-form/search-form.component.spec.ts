@@ -9,7 +9,7 @@ describe('SearchFormComponent', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [FormsModule], // Add FormsModule to the imports array
+        imports: [FormsModule], 
         declarations: [SearchFormComponent],
       }).compileComponents();
     })

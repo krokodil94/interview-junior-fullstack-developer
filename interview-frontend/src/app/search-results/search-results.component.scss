@@ -4,7 +4,7 @@ div {
   .search-results-title {
     font-size: 24px;
     font-weight: bold;
-    color: #007bff; 
+    color: #4CAF50; 
     margin-bottom: 10px;
   }
 
@@ -20,16 +20,17 @@ div {
     li {
       margin-bottom: 8px;
       font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      padding: 8px;
-      background-color: #f7f7f7; 
+      border: 1px solid #e0e0e0; 
+      border-radius: 8px; 
+      padding: 10px; 
+      background-color: #f5f5f5; 
       box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1); 
       transition: background-color 0.2s ease;
+
       font-family: monospace, sans-serif;
       font-weight: normal;
-      color: #000000;
-      
+      color: #333; 
+
       &:hover {
         background-color: #fff; 
       }
@@ -38,23 +39,23 @@ div {
 }
 
 button {
-  flex-basis: calc(50% - 5px); 
+  flex-basis: calc(50% - 5px);
   margin-top: 10px;
-  padding: 8px 0; 
-  width: 120px; 
-  font-size: 16px;
-  background-color: #007bff;
-  color: #fff;
+  padding: 10px 0; 
+  width: 120px;
+  font-size: 18px; 
+  background-color: #4CAF50; 
+  color: #fff; 
   border: none;
-  border-radius: 4px;
+  border-radius: 8px; 
   cursor: pointer;
-  display: inline-block; 
-  text-align: center; 
+  display: inline-block;
+  text-align: center;
   box-sizing: border-box;
-  margin-right: 10px; 
+  margin-right: 10px;
 
   &:hover {
-    background-color: #0056b3;
+    background-color: #45a049; 
   }
 }
 
@@ -63,5 +64,4 @@ p {
   color: #f00; 
   margin-top: 10px;
   font-family: monospace, sans-serif;
-  
 }
