@@ -1,12 +1,21 @@
+<!-- This is the main container for the city search component -->
 <div class="search-container">
+  
+  <!-- This div contains the search form -->
   <div class="search-form">
+    <!-- The app-search-form component allows users to input the city name to search -->
+    <!-- When the search is submitted, it triggers the searchCities method -->
     <app-search-form (searchSubmit)="searchCities($event)"></app-search-form>
+
+    <!-- ng-container is used to conditionally display a message if the query is empty -->
     <ng-container *ngIf="emptyQuery">
+      <!-- Display this message when the query is empty -->
       <p>Please enter a city name to search.</p>
     </ng-container>
   </div>
 
-  
+  <!-- This is the app-search-results component, which displays the search results -->
+  <!-- It will only be shown if the search has been performed and the query is not empty -->
   <app-search-results
     *ngIf="hasSearched && !emptyQuery"
     [searchResults]="searchResults"

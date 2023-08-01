@@ -1,19 +1,26 @@
 <div>
+  <!-- Use ngIf to check if there are search results. If there are, display them; otherwise, show the 'noResults' template. -->
   <ng-container *ngIf="searchResults.length > 0; else noResults">
+    <!-- Display the title 'Cities Found' if there are search results -->
     <h2 class="search-results-title">Cities Found</h2>
+    <!-- Iterate through the searchResults array and display each city name -->
     <ul>
       <li *ngFor="let result of searchResults">
         {{ result.cityName }}
       </li>
     </ul>
+    <!-- Show the 'Previous Page' button if the current page is greater than 1 -->
     <button *ngIf="currentPage > 1" (click)="loadPreviousPage()">Previous Page</button>
+    <!-- Show the 'Next Page' button if the current page is less than totalPages -->
     <button *ngIf="currentPage < totalPages" (click)="loadNextPage()">Next Page</button>
   </ng-container>
 
+  <!-- Use ng-template with the 'noResults' identifier to display a message when there are no search results -->
   <ng-template #noResults>
     <p>No results found. Try a different search term.</p>
   </ng-template>
 </div>
+
 
 
 

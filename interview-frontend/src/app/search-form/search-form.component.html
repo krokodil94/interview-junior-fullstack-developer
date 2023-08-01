@@ -1,7 +1,16 @@
+<!-- This is the main container for the city search component -->
 <div class="search-container">
+
+  <!-- This form allows users to input a city name and submit the search -->
   <form (submit)="onSearchSubmit($event)">
+    <!-- The input field allows users to enter the city name to search -->
+    <!-- Two-way data binding using [(ngModel)] ensures the searchQuery property is updated when the input value changes -->
+    <!-- The name attribute is set to "searchQuery" to identify the form field when submitting -->
     <input type="text" [(ngModel)]="searchQuery" name="searchQuery" placeholder="Enter a city name" />
+
+    <!-- The button triggers the form submission when clicked -->
     <button type="submit">Search</button>
   </form>
 </div>
+
 
