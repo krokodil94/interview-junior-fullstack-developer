@@ -38,14 +38,18 @@ div {
   }
 }
 
+.pagination-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 button {
   flex-basis: calc(50% - 5px);
   margin-top: 10px;
   padding: 10px 0; 
   width: 120px;
   font-size: 18px; 
-  background-color: #4CAF50; 
-  color: #fff; 
   border: none;
   border-radius: 8px; 
   cursor: pointer;
@@ -57,6 +61,12 @@ button {
   &:hover {
     background-color: #45a049; 
   }
+
+  // Add styles for disabled button
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
 }
 
 p {
@@ -65,3 +75,4 @@ p {
   margin-top: 10px;
   font-family: monospace, sans-serif;
 }
+
