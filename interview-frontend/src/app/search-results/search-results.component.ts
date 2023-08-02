@@ -24,6 +24,9 @@ export class SearchResultsComponent {
   get isFirstPage(): boolean {
     return this.currentPage === 1;
   }
+  get isOnePage(): boolean {
+    return this.totalPages === 1;
+  }
   // Method to load the previous page of search results
   loadPreviousPage() {
     this.previousPage.emit();

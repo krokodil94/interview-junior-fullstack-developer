@@ -10,7 +10,7 @@
       </li>
     </ul>
     <!-- Show the 'Previous Page' button if the current page is greater than 1 -->
-    <button [disabled]="isFirstPage" (click)="loadPreviousPage()">Previous Page</button>
+    <button *ngIf="!isOnePage" [disabled]="isFirstPage" (click)="loadPreviousPage()">Previous Page</button>
     <!-- Show the 'Next Page' button if the current page is less than totalPages -->
     <button *ngIf="currentPage < totalPages" (click)="loadNextPage()">Next Page</button>
   </ng-container>
