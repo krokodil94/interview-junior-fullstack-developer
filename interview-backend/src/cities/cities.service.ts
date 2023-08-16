@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { readFileSync } from 'fs';
 import { join } from 'path';
-// marks the class as a service, alowwing it to be injected into other components, such as controllers
+// marks the class as a service, alowing it to be injected into other components, such as controllers
 @Injectable()
 export class CitiesService {
   private citiesData: any[];

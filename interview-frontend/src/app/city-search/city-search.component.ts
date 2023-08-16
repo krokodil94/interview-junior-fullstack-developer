@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { City } from '../city.model';
+import { DataService } from '../services/data.service'; // Import the DataService
 
 @Component({
   selector: 'app-city-search',
@@ -14,30 +15,32 @@ export class CitySearchComponent {
   totalPages = 1;
 
   // Flags to control UI states
-  hasSearched = false; 
+  hasSearched = false;
   noResultsFound = false;
 
-  // variables to manage search query and state
-  currentQuery = ''; // Variable to store the current search query
-  emptyQuery = false; // Variable to track if the current query is empty
+  // Variables to manage search query and state
+  currentQuery = '';
+  emptyQuery = false;
 
-  constructor(private http: HttpClient) {}
+  // Constructor: Dependency injection of HttpClient and DataService
+  constructor(private http: HttpClient, private dataService: DataService) {}
+
   // Method to handle city search
   searchCities(query: string) {
     const trimmedQuery = query.trim();
     console.log('Searching for:', trimmedQuery);
-    
+
     // Handle empty query
     if (!trimmedQuery) {
       this.searchResults = [];
-      this.hasSearched = true; // Mark as searched
-      this.noResultsFound = false; // Reset no results found
-      this.currentQuery = ''; // Clear the current search query
-      this.emptyQuery = true; // Mark as empty query
+      this.hasSearched = true;
+      this.noResultsFound = false;
+      this.currentQuery = '';
+      this.emptyQuery = true;
       return;
     }
 
-    // Perform input validation to avoid unnecessary requests for invalid queries
+    // Perform input validation to avoid unnecessary requests for duplicate queries
     if (trimmedQuery === this.currentQuery) {
       // If the query is the same as the previous one, do not make a new request
       return;
@@ -45,43 +48,55 @@ export class CitySearchComponent {
 
     this.currentQuery = trimmedQuery; // Save the current search query
     this.emptyQuery = false; // Reset empty query flag
-    this.loadPage(trimmedQuery, 1);
-    this.hasSearched = true;
+
+    // Fetch search results for the first page using DataService
+    this.dataService.searchCities(trimmedQuery, 1).subscribe(
+      (response) => {
+        this.searchResults = response.results;
+        this.currentPage = 1;
+        this.totalPages = response.totalPages;
+      },
+      (error) => {
+        console.error('Error fetching search results:', error);
+        this.noResultsFound = true;
+      }
+    );
+
+    this.hasSearched = true; // Mark that a search has been performed
   }
-  // Method to fetch search results for a specific page
-  loadPage(query: string, page: number) {
-    this.http
-      .get<{ totalResults: number; totalPages: number; results: City[] }>(
-        `http://localhost:3000/cities/search?query=${query}&page=${page}`
-      )
-      .subscribe(
-        (response) => {
-          console.log(response);
-          this.searchResults = response.results;
-          this.currentPage = page;
-          this.totalPages = response.totalPages;
-        },
-        (error) => {
-          console.error('Error fetching search results:', error);
-          this.noResultsFound = true; // Mark as no results found
-        }
-      );
-  }
+
   // Method to load next page of search results
   loadNextPage() {
     const nextPage = this.currentPage + 1;
     if (nextPage <= this.totalPages) {
-      this.loadPage(this.currentQuery, nextPage); 
+      this.loadPage(this.currentQuery, nextPage);
     }
   }
+
   // Method to load previous page of search results
   loadPreviousPage() {
     const previousPage = this.currentPage - 1;
     if (previousPage >= 1) {
-      this.loadPage(this.currentQuery, previousPage); 
+      this.loadPage(this.currentQuery, previousPage);
     }
   }
+
+  // Method to fetch search results for a specific page using DataService
+  loadPage(query: string, page: number) {
+    this.dataService.searchCities(query, page).subscribe(
+      (response) => {
+        this.searchResults = response.results;
+        this.currentPage = page;
+        this.totalPages = response.totalPages;
+      },
+      (error) => {
+        console.error('Error fetching search results:', error);
+        this.noResultsFound = true;
+      }
+    );
+  }
 }
+
 
 
 

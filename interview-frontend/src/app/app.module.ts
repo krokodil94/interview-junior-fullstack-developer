@@ -8,6 +8,7 @@ import { CitySearchComponent } from './city-search/city-search.component';
 import { SearchFormComponent } from './search-form/search-form.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DataService } from './services/data.service';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

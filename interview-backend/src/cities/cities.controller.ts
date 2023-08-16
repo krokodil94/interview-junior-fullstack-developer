@@ -1,4 +1,3 @@
-//importing necessary decorators and classes from the @nestjs/common module. 
 import { Controller, Get, Query, DefaultValuePipe, ParseIntPipe } from '@nestjs/common';
 // importing the CitiesService class. It allows to use methods defined in the service.
 import { CitiesService } from './cities.service';

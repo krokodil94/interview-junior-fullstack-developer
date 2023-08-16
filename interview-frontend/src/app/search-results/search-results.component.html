@@ -15,7 +15,7 @@
       Previous Page
     </button>
     <!-- Show the 'Next Page' button if the current page is less than totalPages -->
-    <button *ngIf="currentPage < totalPages" (click)="loadNextPage()">Next Page</button>
+    <button *ngIf="!isOnePage" [disabled]="currentPage >= totalPages" (click)="loadNextPage()">Next Page</button>
   </ng-container>
 
   <!-- Use ng-template with the 'noResults' identifier to display a message when there are no search results -->
