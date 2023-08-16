@@ -2,9 +2,11 @@
 <div class="search-container">
 
   <!-- This form allows users to input a city name and submit the search -->
+  <!-- The $event parameter represents the event object associated with the form submission-->
   <form (submit)="onSearchSubmit($event)">
     <!-- The input field allows users to enter the city name to search -->
-    <!-- Two-way data binding using [(ngModel)] ensures the searchQuery property is updated when the input value changes -->
+    <!-- Two-way data binding using [(ngModel)] ensures the searchQuery property is
+    updated when the input value changes -->
     <!-- The name attribute is set to "searchQuery" to identify the form field when submitting -->
     <input type="text" [(ngModel)]="searchQuery" name="searchQuery" placeholder="Enter a city" />
 

@@ -5,11 +5,13 @@
   <div class="search-form">
     <!-- The app-search-form component allows users to input the city name to search -->
     <!-- When the search is submitted, it triggers the searchCities method -->
+    <!-- searchSubmit event binding listens for the searchSubmit event emitted by the
+    app-search-form component when the form is submitted. When the event is emitted, the
+    searchCities($event) method is called-->
     <app-search-form (searchSubmit)="searchCities($event)"></app-search-form>
 
     <!-- ng-container is used to conditionally display a message if the query is empty -->
     <ng-container *ngIf="emptyQuery">
-      <!-- Display this message when the query is empty -->
       <p>Please enter a city name to search.</p>
     </ng-container>
   </div>

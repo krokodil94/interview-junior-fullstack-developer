@@ -8,20 +8,26 @@ import { City } from '../city.model';
   styleUrls: ['./city-search.component.scss'],
 })
 export class CitySearchComponent {
+  // Properties to manage search results and pagination
   searchResults: City[] = [];
   currentPage = 1;
   totalPages = 1;
-  hasSearched = false;
+
+  // Flags to control UI states
+  hasSearched = false; 
   noResultsFound = false;
+
+  // variables to manage search query and state
   currentQuery = ''; // Variable to store the current search query
   emptyQuery = false; // Variable to track if the current query is empty
 
   constructor(private http: HttpClient) {}
-
+  // Method to handle city search
   searchCities(query: string) {
     const trimmedQuery = query.trim();
     console.log('Searching for:', trimmedQuery);
-
+    
+    // Handle empty query
     if (!trimmedQuery) {
       this.searchResults = [];
       this.hasSearched = true; // Mark as searched
@@ -42,7 +48,7 @@ export class CitySearchComponent {
     this.loadPage(trimmedQuery, 1);
     this.hasSearched = true;
   }
-
+  // Method to fetch search results for a specific page
   loadPage(query: string, page: number) {
     this.http
       .get<{ totalResults: number; totalPages: number; results: City[] }>(
@@ -61,14 +67,14 @@ export class CitySearchComponent {
         }
       );
   }
-
+  // Method to load next page of search results
   loadNextPage() {
     const nextPage = this.currentPage + 1;
     if (nextPage <= this.totalPages) {
       this.loadPage(this.currentQuery, nextPage); 
     }
   }
-
+  // Method to load previous page of search results
   loadPreviousPage() {
     const previousPage = this.currentPage - 1;
     if (previousPage >= 1) {

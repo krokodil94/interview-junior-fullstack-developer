@@ -1,5 +1,6 @@
 <div>
-  <!-- Use ngIf to check if there are search results. If there are, display them; otherwise, show the 'noResults' template. -->
+  <!-- Use ngIf to check if there are search results. If there are, display them;
+  therwise, show the 'noResults' template. -->
   <ng-container *ngIf="searchResults.length > 0; else noResults">
     <!-- Display the title 'Cities Found' if there are search results -->
     <h2 class="search-results-title">Cities Found</h2>
@@ -10,7 +11,9 @@
       </li>
     </ul>
     <!-- Show the 'Previous Page' button if the current page is greater than 1 -->
-    <button *ngIf="!isOnePage" [disabled]="isFirstPage" (click)="loadPreviousPage()">Previous Page</button>
+    <button *ngIf="!isOnePage" [disabled]="isFirstPage" (click)="loadPreviousPage()">
+      Previous Page
+    </button>
     <!-- Show the 'Next Page' button if the current page is less than totalPages -->
     <button *ngIf="currentPage < totalPages" (click)="loadNextPage()">Next Page</button>
   </ng-container>
