@@ -27,7 +27,7 @@ export class CitySearchComponent {
 
   // Method to handle city search
   searchCities(query: string) {
-    const trimmedQuery = query.trim();
+    let trimmedQuery = query.trim();
     console.log('Searching for:', trimmedQuery);
 
     // Handle empty query
@@ -39,6 +39,11 @@ export class CitySearchComponent {
       this.emptyQuery = true;
       return;
     }
+
+    
+
+
+    
 
     // Perform input validation to avoid unnecessary requests for duplicate queries
     if (trimmedQuery === this.currentQuery) {

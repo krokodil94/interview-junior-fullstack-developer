@@ -10,9 +10,7 @@ export class SearchFormComponent {
   searchQuery: string = '';
 
   // Output EventEmitter to emit the search query when submitted
-  // @Output decorator allows to emit an event from the child component(SearchFormComponent) 
-  // to the parent component
-  // its used to emit the search query entered by the user when the form is submitted
+  
   @Output() searchSubmit: EventEmitter<string> = new EventEmitter<string>();
 
   // Function to handle the form submission when the user clicks the search button
@@ -20,9 +18,7 @@ export class SearchFormComponent {
   onSearchSubmit(event: Event) {
     // Prevent the default form submission behavior, which would cause the page to reload
     event.preventDefault();
-    // Emit the search query using the searchSubmit EventEmitter. It sends the value of
-    // the searchQuery property to the parent component. This allows the parent component
-    // to access the search query entered by the user
+    // Emit the search query using the searchSubmit EventEmitter. 
     this.searchSubmit.emit(this.searchQuery);
   }
 }
