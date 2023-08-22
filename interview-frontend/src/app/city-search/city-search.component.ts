@@ -25,6 +25,13 @@ export class CitySearchComponent {
   // Constructor: Dependency injection of HttpClient and DataService
   constructor(private http: HttpClient, private dataService: DataService) {}
 
+  ngOnInit() {
+    // Retrieve the search query from local storage if available
+    const savedSearchQuery = localStorage.getItem('searchQuery');
+    if (savedSearchQuery) {
+      this.searchCities(savedSearchQuery);
+    }
+  }
   // Method to handle city search
   searchCities(query: string) {
     let trimmedQuery = query.trim();
@@ -66,7 +73,9 @@ export class CitySearchComponent {
         this.noResultsFound = true;
       }
     );
-
+    // Save the search query to local storage
+    localStorage.setItem('searchQuery', query);
+    
     this.hasSearched = true; // Mark that a search has been performed
   }
 
